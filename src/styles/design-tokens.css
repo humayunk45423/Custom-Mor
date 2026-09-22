@@ -1,0 +1,120 @@
+/* Custom Mor Encyclopedia — Design Tokens & Typography */
+
+:root {
+  /* Typography */
+  --font-serif-bn: 'Noto Serif Bengali', serif;
+  --font-sans-bn: 'Noto Sans Bengali', sans-serif;
+  --font-serif-en: 'Merriweather', Georgia, serif;
+  --font-sans-en: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-brand: 'Cinzel', serif;
+
+  /* Colors — Light Theme (Academic Archival Ivory) */
+  --bg-primary: #fcfbf9;
+  --bg-surface: #ffffff;
+  --bg-card: #f8f6f0;
+  --bg-hover: #f1ede4;
+  --bg-accent-subtle: #f0f4ff;
+
+  --text-primary: #1c1917;
+  --text-secondary: #44403c;
+  --text-muted: #78716c;
+  --text-accent: #0f4c81; /* Archival Deep Indigo */
+  --text-brand: #7a1c1d; /* Deep Burgundy Archive */
+
+  --border-light: #e7e5e4;
+  --border-medium: #d6d3d1;
+  --border-accent: #0f4c81;
+
+  /* Confidence Badges */
+  --badge-official-bg: #ecfdf5;
+  --badge-official-text: #065f46;
+  --badge-official-border: #a7f3d0;
+
+  --badge-local-bg: #eff6ff;
+  --badge-local-text: #1e40af;
+  --badge-local-border: #bfdbfe;
+
+  --badge-oral-bg: #fffbeb;
+  --badge-oral-text: #92400e;
+  --badge-oral-border: #fde68a;
+
+  --badge-survey-bg: #faf5ff;
+  --badge-survey-text: #6b21a8;
+  --badge-survey-border: #e9d5ff;
+
+  /* Elevation Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.08);
+  --shadow-modal: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+  /* Layout */
+  --max-content-width: 1320px;
+  --article-max-width: 840px;
+  --infobox-width: 330px;
+  --header-height: 72px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Dark Theme (Scholar Dark Mode) */
+[data-theme='dark'] {
+  --bg-primary: #0f172a;
+  --bg-surface: #1e293b;
+  --bg-card: #182234;
+  --bg-hover: #263349;
+  --bg-accent-subtle: #1e2a44;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-accent: #60a5fa;
+  --text-brand: #f87171;
+
+  --border-light: #334155;
+  --border-medium: #475569;
+  --border-accent: #60a5fa;
+
+  --badge-official-bg: #064e3b;
+  --badge-official-text: #a7f3d0;
+  --badge-official-border: #047857;
+
+  --badge-local-bg: #1e3a8a;
+  --badge-local-text: #bfdbfe;
+  --badge-local-border: #2563eb;
+
+  --badge-oral-bg: #78350f;
+  --badge-oral-text: #fef3c7;
+  --badge-oral-border: #b45309;
+
+  --badge-survey-bg: #581c87;
+  --badge-survey-text: #f3e8ff;
+  --badge-survey-border: #7e22ce;
+
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
+
+/* Sepia / Classical Manuscript Theme */
+[data-theme='sepia'] {
+  --bg-primary: #f4ecd8;
+  --bg-surface: #fdf6e2;
+  --bg-card: #eee4cb;
+  --bg-hover: #e4d7b8;
+  --bg-accent-subtle: #eadfc2;
+
+  --text-primary: #2c251a;
+  --text-secondary: #4a3e2c;
+  --text-muted: #73644d;
+  --text-accent: #8b3a0f;
+  --text-brand: #742515;
+
+  --border-light: #dfd4b7;
+  --border-medium: #ccbfa0;
+  --border-accent: #8b3a0f;
+}
