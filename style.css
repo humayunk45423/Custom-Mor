@@ -380,8 +380,9 @@ body.skin-theme-dark .mw-logo-tagline {
 }
 
 .wiki-appearance-box {
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.4;
+  color: var(--wiki-text);
 }
 .appearance-header {
   display: flex;
@@ -390,6 +391,7 @@ body.skin-theme-dark .mw-logo-tagline {
   margin-bottom: 14px;
   font-size: 16px;
   font-weight: 700;
+  color: var(--wiki-text);
 }
 .appearance-group {
   margin-bottom: 14px;
@@ -397,9 +399,10 @@ body.skin-theme-dark .mw-logo-tagline {
   border-bottom: 1px solid var(--wiki-border-light);
 }
 .appearance-title {
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
   color: var(--wiki-text-secondary);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 .appearance-options {
   display: flex;
@@ -412,11 +415,14 @@ body.skin-theme-dark .mw-logo-tagline {
   gap: 8px;
   cursor: pointer;
   color: var(--wiki-text);
+  font-size: 14px;
 }
-.appearance-option input {
+.appearance-option input[type="radio"] {
   cursor: pointer;
+  margin: 0;
   width: 16px;
   height: 16px;
+  accent-color: #36c;
 }
 
 /* ==========================================================================

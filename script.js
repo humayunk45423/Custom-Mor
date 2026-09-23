@@ -69,6 +69,13 @@
       }
     });
 
+    // Update document title (browser tab) based on language
+    if (lang === 'bn') {
+      document.title = 'কাস্টম মোড় — বদরগঞ্জ, রংপুর | Custom Mor Wikipedia';
+    } else {
+      document.title = 'Custom Mor — Badarganj, Rangpur | Custom Mor Wikipedia';
+    }
+
     // Switch images with data-img-bn and data-img-en
     document.querySelectorAll('[data-img-bn][data-img-en]').forEach((el) => {
       const imgSrc = el.getAttribute('data-img-' + lang);
