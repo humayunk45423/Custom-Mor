@@ -4,28 +4,33 @@
    ========================================================================== */
 
 :root {
-  --wiki-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans Bengali", sans-serif;
-  --wiki-font-serif: "Kalpurush", "SolaimanLipi", "Nikosh", "Noto Serif Bengali", Georgia, "Times New Roman", serif;
-  --wiki-font-size-base: 15px;
-  --wiki-line-height: 1.65;
+  /* Spec §A1: font stack */
+  --wiki-font-sans: "Aptos", "Nirmala UI", "Noto Sans Bengali", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --wiki-font-serif: "Noto Serif Bengali", "Linux Libertine", "Georgia", serif;
+
+  /* Spec §5: root 16px, content at 0.875em = ~14px */
+  --wiki-font-size-base: 16px;
+  --wiki-content-font-size: 0.875em;
+  --wiki-line-height: 1.6;
 
   --wiki-bg: #ffffff;
   --wiki-bg-secondary: #f8f9fa;
-  --wiki-bg-subtle: #f0f2f5;
+  --wiki-bg-subtle: #eaecf0;
   --wiki-text: #202122;
   --wiki-text-secondary: #54595d;
   --wiki-text-tertiary: #72777d;
-  
-  --wiki-link: #3366cc;
-  --wiki-link-hover: #447ff5;
-  --wiki-link-active: #2a4b8d;
-  --wiki-link-visited: #6b4ba1;
+
+  /* Spec §6: exact Wikipedia link colours */
+  --wiki-link: #0645ad;
+  --wiki-link-hover: #0645ad;
+  --wiki-link-active: #0b0080;
+  --wiki-link-visited: #0b0080;
   --wiki-link-red: #ba0000;
-  
+
   --wiki-border: #a2a9b1;
   --wiki-border-light: #eaecf0;
   --wiki-border-subtle: #c8ccd1;
-  
+
   --wiki-infobox-header: #cee0f2;
   --wiki-infobox-subheader: #eaf3ff;
   --wiki-infobox-bg: #f8f9fa;
@@ -55,9 +60,9 @@ body.skin-theme-dark {
   --wiki-highlight: #453b12;
 }
 
-/* Font size modifier */
-body.font-size-small { --wiki-font-size-base: 13.5px; }
-body.font-size-large { --wiki-font-size-base: 17px; }
+/* Font size modifier — spec §5 three steps */
+body.font-size-small  { --wiki-content-font-size: 0.8125em; }  /* ~13px */
+body.font-size-large  { --wiki-content-font-size: 0.9375em; }  /* ~15px */
 
 /* Content width modifier (MediaWiki Vector 2022)
    Standard: outer wrapper is max-width constrained and centered (like Wikipedia's default)
@@ -75,14 +80,14 @@ body.content-width-wide .wiki-page-wrapper {
 }
 
 html {
-  font-size: 16px;
+  font-size: 100%;
   scroll-behavior: smooth;
   scroll-padding-top: 56px;
 }
 
 body {
   font-family: var(--wiki-font-sans);
-  font-size: var(--wiki-font-size-base);
+  font-size: var(--wiki-font-size-base);   /* 16px root */
   line-height: var(--wiki-line-height);
   color: var(--wiki-text);
   background-color: var(--wiki-bg);
@@ -110,7 +115,7 @@ a:visited {
   z-index: 1000;
   background-color: var(--wiki-bg);
   border-bottom: 1px solid var(--wiki-border-light);
-  height: 50px;
+  height: 52px;          /* spec §5: 52–60px */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -259,11 +264,11 @@ body.skin-theme-dark .mw-logo-tagline {
 
 /* Left Sidebar (TOC) */
 .wiki-sidebar-col {
-  width: 220px;
+  width: 176px;          /* spec §5: ~11em / 176px */
   flex-shrink: 0;
   position: sticky;
-  top: 50px;
-  height: calc(100vh - 50px);
+  top: 52px;
+  height: calc(100vh - 52px);
   overflow-y: auto;
   padding: 16px 0;
   transition: width 0.2s ease;
@@ -348,8 +353,8 @@ body.skin-theme-dark .mw-logo-tagline {
   width: 170px;
   flex-shrink: 0;
   position: sticky;
-  top: 50px;
-  height: calc(100vh - 50px);
+  top: 52px;
+  height: calc(100vh - 52px);
   overflow-y: auto;
   padding: 16px 0;
 }
@@ -414,12 +419,14 @@ body.skin-theme-dark .mw-logo-tagline {
   gap: 8px;
 }
 .article-main-title {
-  font-family: var(--wiki-font-serif);
-  font-size: 2.15rem;
+  /* spec: H1 serif, 1.8em, normal weight — not bold */
+  font-family: "Noto Serif Bengali", "Linux Libertine", Georgia, serif;
+  font-size: 1.8em;
   font-weight: 400;
-  line-height: 1.2;
+  line-height: 1.3;
   color: var(--wiki-text);
   margin: 0;
+  border-bottom: none;
 }
 .title-audio-icon {
   color: var(--wiki-text-secondary);
@@ -556,23 +563,26 @@ body.skin-theme-dark .mw-logo-tagline {
    Article Body & Typography (Exact Bengali Wikipedia)
    ========================================================================== */
 .wiki-body {
-  font-family: var(--wiki-font-serif);
-  font-size: 1.02rem;
-  line-height: 1.8;
+  /* spec §5: content at 0.875em (~14px) of 16px root */
+  font-family: var(--wiki-font-sans);
+  font-size: var(--wiki-content-font-size);
+  line-height: 1.6;
   color: var(--wiki-text);
 }
 
 .wiki-body p {
-  margin: 0.6em 0 0.85em 0;
+  margin: 0 0 0.8em 0;
   text-align: justify;
+  hyphens: auto;
 }
 
 .wiki-body h2 {
+  /* spec: serif, bottom border full-width, [সম্পাদনা] edit link right */
   font-family: var(--wiki-font-sans);
-  font-size: 1.55rem;
+  font-size: 1.5em;
   font-weight: 400;
   color: var(--wiki-text);
-  margin: 1.5em 0 0.4em 0;
+  margin: 1.2em 0 0.3em 0;
   padding-bottom: 4px;
   border-bottom: 1px solid var(--wiki-border);
   display: flex;
@@ -582,10 +592,10 @@ body.skin-theme-dark .mw-logo-tagline {
 
 .wiki-body h3 {
   font-family: var(--wiki-font-sans);
-  font-size: 1.25rem;
+  font-size: 1.2em;
   font-weight: 600;
   color: var(--wiki-text);
-  margin: 1.2em 0 0.4em 0;
+  margin: 1em 0 0.3em 0;
 }
 
 .wiki-edit-section {
@@ -615,26 +625,29 @@ sup.reference a {
    Infobox (Exact Bengali Wikipedia Style)
    ========================================================================== */
 .wiki-infobox {
+  /* spec §infobox: ~22em, margin-left 1em */
   float: right;
   clear: right;
-  margin: 0 0 16px 20px;
-  width: 300px;
+  margin: 0 0 16px 1em;
+  width: 22em;
+  max-width: 100%;
   background-color: var(--wiki-infobox-bg);
   border: 1px solid var(--wiki-border);
   padding: 3px;
-  font-size: 12.5px;
-  line-height: 1.45;
+  font-size: 0.85em;
+  line-height: 1.4;
   border-spacing: 0;
 }
 
 .infobox-header-main {
+  /* spec: ~1.15em, bold, centered, colored band */
   background-color: var(--wiki-infobox-header);
   color: var(--wiki-text);
   font-family: var(--wiki-font-sans);
-  font-size: 15px;
+  font-size: 1.15em;
   font-weight: 700;
   text-align: center;
-  padding: 8px 6px;
+  padding: 6px 4px;
 }
 .infobox-native-name {
   font-size: 12px;
@@ -685,12 +698,12 @@ sup.reference a {
   width: 38%;
   font-weight: 600;
   color: var(--wiki-text);
-  padding: 5px 6px;
+  padding: 0.4em 0.6em;  /* spec: ~0.4em 0.6em */
   vertical-align: top;
   border-bottom: 1px solid var(--wiki-border-light);
 }
 .infobox-data {
-  padding: 5px 6px;
+  padding: 0.4em 0.6em;
   vertical-align: top;
   border-bottom: 1px solid var(--wiki-border-light);
 }
