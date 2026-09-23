@@ -69,6 +69,14 @@
       }
     });
 
+    // Switch images with data-img-bn and data-img-en
+    document.querySelectorAll('[data-img-bn][data-img-en]').forEach((el) => {
+      const imgSrc = el.getAttribute('data-img-' + lang);
+      if (imgSrc) {
+        el.src = imgSrc;
+      }
+    });
+
     // Translate digits in all text nodes
     const digitMap = lang === 'en' ? 
       {'০':'0','১':'1','২':'2','৩':'3','৪':'4','৫':'5','৬':'6','৭':'7','৮':'8','৯':'9'} : 
@@ -320,4 +328,53 @@
 
   // --- Initialize Language ---
   applyLanguage(currentLang);
+
+  // --- Page Previews (Hover Tooltips) ---
+  function initPagePreviews() {
+    const popup = document.createElement('div');
+    popup.className = 'wiki-preview-popup';
+    document.body.appendChild(popup);
+
+    const links = document.querySelectorAll('a[data-summary-bn]');
+    let timeoutId;
+
+    links.forEach(link => {
+      link.addEventListener('mouseenter', () => {
+        clearTimeout(timeoutId);
+        const isEn = document.body.classList.contains('lang-en');
+        const summary = isEn ? link.getAttribute('data-summary-en') : link.getAttribute('data-summary-bn');
+        if (!summary) return;
+
+        popup.innerHTML = summary + '<div class="wiki-preview-footer">⚙</div>';
+        
+        const rect = link.getBoundingClientRect();
+        let top = rect.bottom + window.scrollY + 5;
+        let left = Math.max(10, rect.left + window.scrollX);
+
+        popup.style.display = 'block';
+        
+        if (left + 320 > window.innerWidth) {
+          left = window.innerWidth - 340;
+        }
+        
+        popup.style.top = `${top}px`;
+        popup.style.left = `${left}px`;
+        
+        setTimeout(() => popup.classList.add('show'), 10);
+      });
+
+      link.addEventListener('mouseleave', () => {
+        timeoutId = setTimeout(() => {
+          popup.classList.remove('show');
+          setTimeout(() => {
+            if (!popup.classList.contains('show')) popup.style.display = 'none';
+          }, 200);
+        }, 150);
+      });
+    });
+  }
+  
+  // Call it after a short delay to ensure DOM is ready and links are present
+  setTimeout(initPagePreviews, 100);
+
 })();
