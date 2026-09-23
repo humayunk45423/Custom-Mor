@@ -8,9 +8,9 @@
   --wiki-font-sans: "Aptos", "Nirmala UI", "Noto Sans Bengali", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
   --wiki-font-serif: "Noto Serif Bengali", "Linux Libertine", "Georgia", serif;
 
-  /* Spec §5: root 16px, content at 0.875em = ~14px */
-  --wiki-font-size-base: 16px;
-  --wiki-content-font-size: 0.875em;
+  /* Increased sizes for readability */
+  --wiki-font-size-base: 17.5px;
+  --wiki-content-font-size: 1.05em;
   --wiki-line-height: 1.6;
 
   --wiki-bg: #ffffff;
@@ -60,9 +60,9 @@ body.skin-theme-dark {
   --wiki-highlight: #453b12;
 }
 
-/* Font size modifier — spec §5 three steps */
-body.font-size-small  { --wiki-content-font-size: 0.8125em; }  /* ~13px */
-body.font-size-large  { --wiki-content-font-size: 0.9375em; }  /* ~15px */
+/* Font size modifier */
+body.font-size-small  { --wiki-content-font-size: 0.95em; }
+body.font-size-large  { --wiki-content-font-size: 1.15em; }
 
 /* Content width modifier (MediaWiki Vector 2022)
    Standard: outer wrapper is max-width constrained and centered (like Wikipedia's default)
@@ -115,12 +115,19 @@ a:visited {
   z-index: 1000;
   background-color: var(--wiki-bg);
   border-bottom: 1px solid var(--wiki-border-light);
-  height: 52px;          /* spec §5: 52–60px */
+  height: 72px;
+}
+
+.wiki-header-container {
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
   gap: 16px;
+  height: 100%;
 }
 
 .wiki-header-left {
@@ -156,8 +163,8 @@ a:visited {
   text-decoration: none;
 }
 .mw-logo-icon {
-  width: 38px;
-  height: 38px;
+  width: 50px;
+  height: 50px;
   display: block;
 }
 .mw-logo-container {
@@ -166,12 +173,12 @@ a:visited {
   justify-content: center;
 }
 .mw-logo-wordmark {
-  height: 18px;
+  height: 24px;
   width: auto;
   display: block;
 }
 .mw-logo-tagline {
-  height: 13px;
+  height: 15px;
   width: auto;
   margin-top: 2px;
   display: block;
@@ -252,7 +259,7 @@ body.skin-theme-dark .mw-logo-tagline {
    ========================================================================== */
 .wiki-page-wrapper {
   /* Standard width: centred container exactly like Wikipedia */
-  max-width: 1310px;
+  max-width: 1600px;
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -264,11 +271,11 @@ body.skin-theme-dark .mw-logo-tagline {
 
 /* Left Sidebar (TOC) */
 .wiki-sidebar-col {
-  width: 176px;          /* spec §5: ~11em / 176px */
+  width: 220px;
   flex-shrink: 0;
   position: sticky;
-  top: 52px;
-  height: calc(100vh - 52px);
+  top: 72px;
+  height: calc(100vh - 72px);
   overflow-y: auto;
   padding: 16px 0;
   transition: width 0.2s ease;
@@ -303,7 +310,7 @@ body.skin-theme-dark .mw-logo-tagline {
 
 .wiki-toc-list {
   list-style: none;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.4;
 }
 .wiki-toc-item {
@@ -313,8 +320,8 @@ body.skin-theme-dark .mw-logo-tagline {
 .wiki-toc-item a {
   display: flex;
   align-items: center;
-  padding: 4px 6px;
-  color: var(--wiki-text);
+  padding: 6px 8px;
+  color: var(--wiki-link);
   text-decoration: none;
   border-radius: 2px;
   border-left: 3px solid transparent;
@@ -329,16 +336,32 @@ body.skin-theme-dark .mw-logo-tagline {
   border-left-color: var(--wiki-link);
   background-color: var(--wiki-bg-secondary);
 }
-.toc-chevron {
-  display: inline-block;
-  margin-right: 5px;
-  font-size: 11px;
-  color: var(--wiki-text-tertiary);
-}
 .wiki-toc-sublist {
   list-style: none;
   padding-left: 14px;
+  display: none;
 }
+.toc-toggle { display: none; }
+.toc-toggle:checked ~ .wiki-toc-sublist { display: block; }
+
+.toc-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 4px;
+  width: 20px;
+  height: 20px;
+  transform: rotate(0deg);
+  transition: transform 0.15s ease;
+  color: var(--wiki-text-tertiary);
+  font-size: 16px;
+  line-height: 1;
+}
+.toc-arrow::before {
+  content: "›"; /* Chevron arrow */
+}
+.toc-toggle:checked ~ .toc-arrow { transform: rotate(90deg); }
 
 /* Center Column (Main Article) */
 .wiki-main-col {
@@ -350,11 +373,11 @@ body.skin-theme-dark .mw-logo-tagline {
 
 /* Right Tools Column (Appearance Controls) */
 .wiki-tools-col {
-  width: 170px;
+  width: 200px;
   flex-shrink: 0;
   position: sticky;
-  top: 52px;
-  height: calc(100vh - 52px);
+  top: 72px;
+  height: calc(100vh - 72px);
   overflow-y: auto;
   padding: 16px 0;
 }

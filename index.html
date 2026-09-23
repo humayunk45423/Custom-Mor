@@ -78,7 +78,8 @@
        Top Navigation Bar (Authentic MediaWiki Vector 2022 Header)
        ========================================================================== -->
   <header class="wiki-header" role="banner">
-    <div class="wiki-header-left">
+    <div class="wiki-header-container">
+      <div class="wiki-header-left">
       <button class="wiki-menu-button" id="menuBtn" aria-label="প্রধান মেনু" title="প্রধান মেনু">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -89,10 +90,10 @@
 
       <!-- Exact Wikipedia Globe & Wordmark Logos -->
       <a class="mw-logo" href="/" title="উইকিপিডিয়া প্রধান পাতা">
-        <img class="mw-logo-icon" src="images/wikipedia-globe.svg" alt="উইকিপিডিয়া লোগো" width="38" height="38" />
+        <img class="mw-logo-icon" src="images/wikipedia-globe.svg" alt="উইকিপিডিয়া লোগো" width="50" height="50" />
         <span class="mw-logo-container">
-          <img class="mw-logo-wordmark" src="images/wikipedia-wordmark-bn.svg" alt="উইকিপিডিয়া" width="105" height="18" />
-          <img class="mw-logo-tagline" src="images/wikipedia-tagline-bn.svg" alt="একটি মুক্ত বিশ্বকোষ" width="100" height="12" />
+          <img class="mw-logo-wordmark" src="images/wikipedia-wordmark-bn.svg" alt="উইকিপিডিয়া" width="135" height="24" />
+          <img class="mw-logo-tagline" src="images/wikipedia-tagline-bn.svg" alt="একটি মুক্ত বিশ্বকোষ" width="125" height="15" />
         </span>
       </a>
     </div>
@@ -127,6 +128,7 @@
         <span id="langCurrentLabel" data-bn="English" data-en="বাংলা">English</span>
       </button>
     </div>
+    </div>
   </header>
 
   <!-- ==========================================================================
@@ -146,10 +148,13 @@
             <a href="#introduction"><span data-bn="সূচনা" data-en="(Top)">সূচনা</span></a>
           </li>
           <li class="wiki-toc-item">
-            <a href="#naming-history">
-              <span class="toc-chevron">›</span>
-              <span data-bn="ইতিহাস ও নামকরণ" data-en="History & Etymology">ইতিহাস ও নামকরণ</span>
-            </a>
+            <div style="display: flex; align-items: center;">
+              <a href="#naming-history" style="flex: 1;">
+                <span data-bn="ইতিহাস ও নামকরণ" data-en="History & Etymology">ইতিহাস ও নামকরণ</span>
+              </a>
+              <input type="checkbox" id="toc-toggle-1" class="toc-toggle" checked>
+              <label for="toc-toggle-1" class="toc-arrow" aria-hidden="true"></label>
+            </div>
             <ul class="wiki-toc-sublist">
               <li class="wiki-toc-item">
                 <a href="#naming-background"><span data-bn="নামকরণের প্রেক্ষাপট" data-en="Background">নামকরণের প্রেক্ষাপট</span></a>
@@ -165,10 +170,13 @@
             </a>
           </li>
           <li class="wiki-toc-item">
-            <a href="#admin-evidence">
-              <span class="toc-chevron">›</span>
-              <span data-bn="প্রশাসনিক স্বীকৃতি ও দালিলিক প্রমাণ" data-en="Administrative Recognition">প্রশাসনিক স্বীকৃতি ও দালিলিক প্রমাণ</span>
-            </a>
+            <div style="display: flex; align-items: center;">
+              <a href="#admin-evidence" style="flex: 1;">
+                <span data-bn="প্রশাসনিক স্বীকৃতি ও দালিলিক প্রমাণ" data-en="Administrative Recognition">প্রশাসনিক স্বীকৃতি ও দালিলিক প্রমাণ</span>
+              </a>
+              <input type="checkbox" id="toc-toggle-2" class="toc-toggle" checked>
+              <label for="toc-toggle-2" class="toc-arrow" aria-hidden="true"></label>
+            </div>
             <ul class="wiki-toc-sublist">
               <li class="wiki-toc-item">
                 <a href="#muni-tax"><span data-bn="পৌরসভা কর রসিদ (২০২৫–২৬)" data-en="Municipality Tax Bill">পৌরসভা কর রসিদ (২০২৫–২৬)</span></a>
@@ -659,10 +667,40 @@
           <span class="wiki-edit-section">[<a href="#gallery" data-bn="সম্পাদনা" data-en="edit">সম্পাদনা</a>]</span>
         </h2>
         <p>
-          <span data-bn="কাস্টম মোড় সম্পর্কিত সংগৃহীত ৬টি মূল প্রামাণ্য আলোকচিত্র ও নথি নিচে সন্নিবেশিত হলো:" data-en="The 6 authenticated archival photographs and documents of Custom Mor are presented below:">কাস্টম মোড় সম্পর্কিত সংগৃহীত ৬টি মূল প্রামাণ্য আলোকচিত্র ও নথি নিচে সন্নিবেশিত হলো:</span>
+          <span data-bn="কাস্টম মোড় সম্পর্কিত সংগৃহীত ৮টি মূল প্রামাণ্য আলোকচিত্র ও নথি নিচে সন্নিবেশিত হলো:" data-en="The 8 authenticated archival photographs and documents of Custom Mor are presented below:">কাস্টম মোড় সম্পর্কিত সংগৃহীত ৮টি মূল প্রামাণ্য আলোকচিত্র ও নথি নিচে সন্নিবেশিত হলো:</span>
         </p>
 
         <div class="wiki-gallery-grid">
+          <!-- 2014 Photo 1 -->
+          <div class="gallery-card">
+            <div class="gallery-img-wrap"
+                 data-viewer-img="images/2014_1.jpg"
+                 data-title-bn="কাস্টম মোড়ের দৃশ্যপট (২০১৪)"
+                 data-title-en="Custom Mor Landscape (2014)"
+                 data-date="২০১৪"
+                 tabindex="0">
+              <img src="images/2014_1.jpg" alt="কাস্টম মোড় ২০১৪" loading="lazy">
+            </div>
+            <div class="gallery-caption">
+              <div class="caption-title" data-bn="কাস্টম মোড়ের দৃশ্যপট (২০১৪)" data-en="Custom Mor Landscape (2014)">কাস্টম মোড়ের দৃশ্যপট (২০১৪)</div>
+            </div>
+          </div>
+
+          <!-- 2014 Photo 2 -->
+          <div class="gallery-card">
+            <div class="gallery-img-wrap"
+                 data-viewer-img="images/2014_2.jpg"
+                 data-title-bn="কাস্টম মোড়ের দৃশ্যপট (২০১৪)"
+                 data-title-en="Custom Mor Landscape (2014)"
+                 data-date="২০১৪"
+                 tabindex="0">
+              <img src="images/2014_2.jpg" alt="কাস্টম মোড় ২০১৪" loading="lazy">
+            </div>
+            <div class="gallery-caption">
+              <div class="caption-title" data-bn="কাস্টম মোড়ের দৃশ্যপট ২ (২০১৪)" data-en="Custom Mor Landscape 2 (2014)">কাস্টম মোড়ের দৃশ্যপট ২ (২০১৪)</div>
+            </div>
+          </div>
+
           <!-- Card 1 -->
           <div class="gallery-card">
             <div class="gallery-img-wrap"
