@@ -100,8 +100,12 @@
         <a class="mw-logo" href="/" title="উইকিপিডিয়া প্রধান পাতা">
           <img class="mw-logo-icon" src="images/wikipedia-globe.svg" alt="উইকিপিডিয়া লোগো" width="50" height="50" />
           <span class="mw-logo-container">
-            <img class="mw-logo-wordmark" src="images/wikipedia-wordmark-bn.svg" data-img-bn="images/wikipedia-wordmark-bn.svg" data-img-en="images/wikipedia-wordmark-en.svg" alt="উইকিপিডিয়া" width="135" height="24" />
-            <img class="mw-logo-tagline" src="images/wikipedia-tagline-bn.svg" data-img-bn="images/wikipedia-tagline-bn.svg" data-img-en="images/wikipedia-tagline-en.svg" alt="একটি মুক্ত বিশ্বকোষ" width="125" height="15" />
+            <img class="mw-logo-wordmark" src="images/wikipedia-wordmark-bn.svg"
+              data-img-bn="images/wikipedia-wordmark-bn.svg" data-img-en="images/wikipedia-wordmark-en.svg"
+              alt="উইকিপিডিয়া" width="135" height="24" />
+            <img class="mw-logo-tagline" src="images/wikipedia-tagline-bn.svg"
+              data-img-bn="images/wikipedia-tagline-bn.svg" data-img-en="images/wikipedia-tagline-en.svg"
+              alt="একটি মুক্ত বিশ্বকোষ" width="125" height="15" />
           </span>
         </a>
       </div>
@@ -235,13 +239,48 @@
     <!-- Center Column: Article Content -->
     <main class="wiki-main-col" id="content" role="main">
 
-      <!-- Article Header Bar (Exact MediaWiki Vector 2022) -->
       <div class="wiki-article-header">
         <div class="article-title-row">
           <div class="article-title-left">
             <h1 class="article-main-title" id="articleHeading" data-bn="কাস্টম মোড়" data-en="Custom Mor">কাস্টম মোড়
             </h1>
-            <span class="title-audio-icon" title="উচ্চারণ শুনুন" style="font-size:14px;">🔊</span>
+            <!-- Wikipedia-style < share icon next to title -->
+            <div style="position:relative;display:inline-block;">
+              <button class="title-share-btn" id="shareTitleBtn" title="শেয়ার করুন"
+                style="border:none;background:none;padding:2px 5px;font-size:15px;color:var(--wiki-text-secondary);cursor:pointer;display:inline-flex;align-items:center;">
+                <svg viewBox="0 0 20 20" style="width:16px;height:16px;fill:currentColor;">
+                  <path
+                    d="M15 13a3 3 0 0 0-2.34 1.1l-5-2.73a3 3 0 0 0 0-2.74l5-2.73A3 3 0 1 0 11.45 4L6.22 6.84a3 3 0 1 0 0 6.32l5.23 2.84A3 3 0 1 0 15 13z">
+                  </path>
+                </svg>
+              </button>
+              <div class="share-popup" id="sharePopup">
+                <div class="share-popup-title" data-bn="এই পাতাটি শেয়ার করুন" data-en="Share this article">এই পাতাটি
+                  শেয়ার করুন</div>
+                <div class="share-options">
+                  <a class="share-option" href="" target="_blank" rel="noopener" id="shareFacebook">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                    </svg>
+                    <span>Facebook</span>
+                  </a>
+                  <a class="share-option" href="" target="_blank" rel="noopener" id="shareTwitter">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                    <span>X (Twitter)</span>
+                  </a>
+                  <a class="share-option" href="" target="_blank" rel="noopener" id="shareWhatsapp">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.37 5.07L2 22l5.1-1.34C8.5 21.52 10.2 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z" />
+                    </svg>
+                    <span>WhatsApp</span>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
           <button class="article-lang-btn" id="langTitleBtn" title="ভাষা পরিবর্তন করুন">
             <span>文A</span>
@@ -268,10 +307,10 @@
             data-en="From Wikipedia, the free encyclopedia">উইকিপিডিয়া, মুক্ত বিশ্বকোষ থেকে</span>
           <div class="coordinates-container">
             <span data-bn="স্থানাঙ্ক:" data-en="Coordinates:">স্থানাঙ্ক:</span>
-            <a class="coordinates-link"
-              href="https://www.openstreetmap.org/?mlat=25.667678&mlon=89.057888#map=17/25.667678/89.057888"
+            <a class="coordinates-link" href="https://geohack.toolforge.org/geohack.php?params=25_40_3_N_89_3_28_E"
               target="_blank" rel="noopener">
-              ২৫.৬৬৭৬৭৮° উত্তর ৮৯.০৫৭৮৮৮° পূর্ব
+              <span data-bn="২৫.৬৬৭৬৭৮° উত্তর ৮৯.০৫৭৮৮৮° পূর্ব" data-en="25.667678° N 89.057888° E">২৫.৬৬৭৬৭৮° উত্তর
+                ৮৯.০৫৭৮৮৮° পূর্ব</span>
             </a>
             <span class="star-btn" title="নজর রাখুন">☆</span>
             <div class="verified-tag" id="verifiedTag">
@@ -307,19 +346,31 @@
             </tr>
             <tr>
               <td colspan="2" class="infobox-image-cell">
-                <img src="images/cm-photo-custom-mor-crossroads-panorama-2021.jpg"
-                  alt="কাস্টম মোড় চার রাস্তার সংযোগস্থল ও গ্রামীণ বাজার"
-                  data-viewer-img="images/cm-photo-custom-mor-crossroads-panorama-2021.jpg"
-                  data-title-bn="কাস্টম মোড় চার রাস্তার সংযোগস্থলের প্যানোরামা আলোকচিত্র (২০২১)"
-                  data-title-en="Panoramic Archival Photograph of Custom Mor Crossroads (2021)" data-date="১১ জুন ২০২১"
-                  data-auth-bn="কাস্টম মোড় সরেজমিন সমীক্ষা ও দৃশ্যমান ইতিহাস সংরক্ষণ প্রকল্প"
-                  data-auth-en="Custom Mor Field Survey & Visual History Documentation Project"
-                  data-notes-bn="চার রাস্তার মিলনস্থল, পাকা সড়ক অক্ষ এবং সামাজিক ও বাণিজ্যিক কেন্দ্রবিন্দু হিসেবে মোড়ের অবকাঠামো দৃশ্যমান।"
-                  data-notes-en="Wide landscape photograph depicting the four-way crossroads, paved transit corridors, and market center." />
-                <div class="infobox-image-caption"
-                  data-bn="কাস্টম মোড় চার রাস্তার সংযোগস্থল ও গ্রামীণ বাজার (১১ জুন ২০২১ তারিখে ধারণকৃত)"
-                  data-en="Custom Mor four-way crossroads and commercial center (captured June 11, 2021)">
-                  কাস্টম মোড় চার রাস্তার সংযোগস্থল ও গ্রামীণ বাজার (১১ জুন ২০২১ তারিখে ধারণকৃত)
+                <div class="infobox-slideshow" id="infoboxSlideshow">
+                  <!-- 2014 Photo 1 -->
+                  <div class="infobox-slide active">
+                    <img src="images/2014_1.jpg" alt="কাস্টম মোড় ২০১৪"
+                      data-viewer-img="images/2014_1.jpg" />
+                    <div class="infobox-image-caption" data-bn="কাস্টম মোড়ের দৃশ্যপট (২০১৪)" data-en="Custom Mor Landscape (2014)">কাস্টম মোড়ের দৃশ্যপট (২০১৪)</div>
+                  </div>
+                  <!-- 2014 Photo 2 -->
+                  <div class="infobox-slide">
+                    <img src="images/2014_2.jpg" alt="কাস্টম মোড় বাজার এলাকা ২০১৪"
+                      data-viewer-img="images/2014_2.jpg" />
+                    <div class="infobox-image-caption" data-bn="বাজার এলাকা ও গ্রামীণ জীবনযাত্রা (২০১৪)" data-en="Market area and rural lifestyle (2014)">বাজার এলাকা ও গ্রামীণ জীবনযাত্রা (২০১৪)</div>
+                  </div>
+                  <!-- 2021 Panorama -->
+                  <div class="infobox-slide">
+                    <img src="images/cm-photo-custom-mor-crossroads-panorama-2021.jpg" alt="কাস্টম মোড় প্যানোরামা ২০২১"
+                      data-viewer-img="images/cm-photo-custom-mor-crossroads-panorama-2021.jpg" />
+                    <div class="infobox-image-caption" data-bn="চার রাস্তার সংযোগস্থলের প্যানোরামা (২০২১)" data-en="Crossroads panorama (2021)">চার রাস্তার সংযোগস্থলের প্যানোরামা (২০২১)</div>
+                  </div>
+                  <!-- 2026 Variety Store -->
+                  <div class="infobox-slide">
+                    <img src="images/sadiya-variety-store-1.jpeg" alt="সাদিয়া ভ্যারাইটি স্টোর ২০২৬"
+                      data-viewer-img="images/sadiya-variety-store-1.jpeg" />
+                    <div class="infobox-image-caption" data-bn="সাদিয়া ভ্যারাইটি স্টোর (২০২৬)" data-en="Sadiya Variety Store (2026)">সাদিয়া ভ্যারাইটি স্টোর (২০২৬)</div>
+                  </div>
                 </div>
               </td>
             </tr>
@@ -339,15 +390,27 @@
             </tr>
             <tr class="infobox-row">
               <th scope="row" class="infobox-label" data-bn="বিভাগ" data-en="Division">বিভাগ</th>
-              <td class="infobox-data" data-bn="<a href='https://bn.wikipedia.org/wiki/%E0%A6%B0%E0%A6%82%E0%A6%AA%E0%A7%81%E0%A6%B0_%E0%A6%AC%E0%A6%BF%E0%A6%AD%E0%A6%BE%E0%A6%97' target='_blank' rel='noopener'>রংপুর বিভাগ</a>" data-en="<a href='https://en.wikipedia.org/wiki/Rangpur_Division' target='_blank' rel='noopener'>Rangpur Division</a>"><a href="https://bn.wikipedia.org/wiki/%E0%A6%B0%E0%A6%82%E0%A6%AA%E0%A7%81%E0%A6%B0_%E0%A6%AC%E0%A6%BF%E0%A6%AD%E0%A6%BE%E0%A6%97" target="_blank" rel="noopener" data-summary-bn="রংপুর বাংলাদেশের আটটি বিভাগের একটি।" data-summary-en="Rangpur Division is one of the eight administrative divisions of Bangladesh.">রংপুর বিভাগ</a></td>
+              <td class="infobox-data"
+                data-bn="<a href='https://bn.wikipedia.org/wiki/%E0%A6%B0%E0%A6%82%E0%A6%AA%E0%A7%81%E0%A6%B0_%E0%A6%AC%E0%A6%BF%E0%A6%AD%E0%A6%BE%E0%A6%97' target='_blank' rel='noopener'>রংপুর বিভাগ</a>"
+                data-en="<a href='https://en.wikipedia.org/wiki/Rangpur_Division' target='_blank' rel='noopener'>Rangpur Division</a>">
+                <a href="https://bn.wikipedia.org/wiki/%E0%A6%B0%E0%A6%82%E0%A6%AA%E0%A7%81%E0%A6%B0_%E0%A6%AC%E0%A6%BF%E0%A6%AD%E0%A6%BE%E0%A6%97"
+                  target="_blank" rel="noopener">রংপুর বিভাগ</a></td>
             </tr>
             <tr class="infobox-row">
               <th scope="row" class="infobox-label" data-bn="জেলা" data-en="District">জেলা</th>
-              <td class="infobox-data" data-bn="<a href='https://bn.wikipedia.org/wiki/%E0%A6%B0%E0%A6%82%E0%A6%AA%E0%A7%81%E0%A6%B0_%E0%A6%9C%E0%A7%87%E0%A6%B2%E0%A6%BE' target='_blank' rel='noopener'>রংপুর জেলা</a>" data-en="<a href='https://en.wikipedia.org/wiki/Rangpur_District' target='_blank' rel='noopener'>Rangpur District</a>"><a href="https://bn.wikipedia.org/wiki/%E0%A6%B0%E0%A6%82%E0%A6%AA%E0%A7%81%E0%A6%B0_%E0%A6%9C%E0%A7%87%E0%A6%B2%E0%A6%BE" target="_blank" rel="noopener" data-summary-bn="রংপুর জেলা বাংলাদেশের উত্তরাঞ্চলের রংপুর বিভাগের একটি প্রশাসনিক অঞ্চল।" data-summary-en="Rangpur District is an administrative district in the northern part of Bangladesh.">রংপুর জেলা</a></td>
+              <td class="infobox-data"
+                data-bn="<a href='https://bn.wikipedia.org/wiki/%E0%A6%B0%E0%A6%82%E0%A6%AA%E0%A7%81%E0%A6%B0_%E0%A6%9C%E0%A7%87%E0%A6%B2%E0%A6%BE' target='_blank' rel='noopener'>রংপুর জেলা</a>"
+                data-en="<a href='https://en.wikipedia.org/wiki/Rangpur_District' target='_blank' rel='noopener'>Rangpur District</a>">
+                <a href="https://bn.wikipedia.org/wiki/%E0%A6%B0%E0%A6%82%E0%A6%AA%E0%A7%81%E0%A6%B0_%E0%A6%9C%E0%A7%87%E0%A6%B2%E0%A6%BE"
+                  target="_blank" rel="noopener">রংপুর জেলা</a></td>
             </tr>
             <tr class="infobox-row">
               <th scope="row" class="infobox-label" data-bn="উপজেলা" data-en="Upazila">উপজেলা</th>
-              <td class="infobox-data" data-bn="<a href='https://bn.wikipedia.org/wiki/%E0%A6%AC%E0%A6%A6%E0%A6%B0%E0%A6%97%E0%A6%9E%E0%A7%8D%E0%A6%9C_%E0%A6%89%E0%A6%AA%E0%A6%9C%E0%A7%87%E0%A6%B2%E0%A6%BE' target='_blank' rel='noopener'>বদরগঞ্জ</a>" data-en="<a href='https://en.wikipedia.org/wiki/Badarganj_Upazila' target='_blank' rel='noopener'>Badarganj</a>"><a href="https://bn.wikipedia.org/wiki/%E0%A6%AC%E0%A6%A6%E0%A6%B0%E0%A6%97%E0%A6%9E%E0%A7%8D%E0%A6%9C_%E0%A6%89%E0%A6%AA%E0%A6%9C%E0%A7%87%E0%A6%B2%E0%A6%BE" target="_blank" rel="noopener" data-summary-bn="বদরগঞ্জ বাংলাদেশের রংপুর জেলার অন্তর্গত একটি উপজেলা।" data-summary-en="Badarganj is an upazila of Rangpur District in the division of Rangpur, Bangladesh.">বদরগঞ্জ</a></td>
+              <td class="infobox-data"
+                data-bn="<a href='https://bn.wikipedia.org/wiki/%E0%A6%AC%E0%A6%A6%E0%A6%B0%E0%A6%97%E0%A6%9E%E0%A7%8D%E0%A6%9C_%E0%A6%89%E0%A6%AA%E0%A6%9C%E0%A7%87%E0%A6%B2%E0%A6%BE' target='_blank' rel='noopener'>বদরগঞ্জ</a>"
+                data-en="<a href='https://en.wikipedia.org/wiki/Badarganj_Upazila' target='_blank' rel='noopener'>Badarganj</a>">
+                <a href="https://bn.wikipedia.org/wiki/%E0%A6%AC%E0%A6%A6%E0%A6%B0%E0%A6%97%E0%A6%9E%E0%A7%8D%E0%A6%9C_%E0%A6%89%E0%A6%AA%E0%A6%9C%E0%A7%87%E0%A6%B2%E0%A6%BE"
+                  target="_blank" rel="noopener">বদরগঞ্জ</a></td>
             </tr>
             <tr class="infobox-row">
               <th scope="row" class="infobox-label" data-bn="মৌজা" data-en="Mouza">মৌজা</th>
@@ -362,9 +425,10 @@
             <tr class="infobox-row">
               <th scope="row" class="infobox-label" data-bn="স্থানাঙ্ক" data-en="Coordinates">স্থানাঙ্ক</th>
               <td class="infobox-data">
-                <a href="https://www.openstreetmap.org/?mlat=25.667678&mlon=89.057888#map=17/25.667678/89.057888"
-                  target="_blank" rel="noopener">
-                  ২৫°৪০′০৩.৬″ উত্তর ৮৯°০৩′২৮.৪″ পূর্ব
+                <a href="https://geohack.toolforge.org/geohack.php?params=25_40_3_N_89_3_28_E" target="_blank"
+                  rel="noopener">
+                  <span data-bn="২৫°৪০′০৩.৬″ উত্তর ৮৯°০৩′২৮.৪″ পূর্ব" data-en="25°40′03.6″ N 89°03′28.4″ E">২৫°৪০′০৩.৬″
+                    উত্তর ৮৯°০৩′২৮.৪″ পূর্ব</span>
                 </a>
               </td>
             </tr>
@@ -429,8 +493,16 @@
             <b data-bn="কাস্টম মোড়" data-en="Custom Mor">কাস্টম মোড়</b> (<span lang="en">Custom Mor</span>)
             <span
               data-bn="<a href='https://bn.wikipedia.org/wiki/%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE%E0%A6%A6%E0%A7%87%E0%A6%B6' target='_blank' rel='noopener'>বাংলাদেশের</a> উত্তর-পশ্চিমাঞ্চলের <a href='https://bn.wikipedia.org/wiki/%E0%A6%B0%E0%A6%82%E0%A6%AA%E0%A7%81%E0%A6%B0_%E0%A6%AC%E0%A6%BF%E0%A6%AD%E0%A6%BE%E0%A6%97' target='_blank' rel='noopener'>রংপুর বিভাগের</a> <a href='https://bn.wikipedia.org/wiki/%E0%A6%B0%E0%A6%82%E0%A6%AA%E0%A7%81%E0%A6%B0_%E0%A6%9C%E0%A7%87%E0%A6%B2%E0%A6%BE' target='_blank' rel='noopener'>রংপুর জেলার</a> অন্তর্গত <a href='https://bn.wikipedia.org/wiki/%E0%A6%AC%E0%A6%A6%E0%A6%B0%E0%A6%97%E0%A6%9E%E0%A7%8D%E0%A6%9C_%E0%A6%89%E0%A6%AA%E0%A6%9C%E0%A7%87%E0%A6%B2%E0%A6%BE' target='_blank' rel='noopener'>বদরগঞ্জ উপজেলার</a> বালুয়াভাটা মৌজায় অবস্থিত একটি সুপরিচিত ও সক্রিয় চার রাস্তার সড়ক সংযোগস্থল"
-              data-en="is a prominent four-way road intersection situated within Baluavata mouza, located in <a href='https://en.wikipedia.org/wiki/Badarganj_Upazila' target='_blank' rel='noopener'>Badarganj Upazila</a> of <a href='https://en.wikipedia.org/wiki/Rangpur_District' target='_blank' rel='noopener'>Rangpur District</a>, within <a href='https://en.wikipedia.org/wiki/Rangpur_Division' target='_blank' rel='noopener'>Rangpur Division</a> of <a href='https://en.wikipedia.org/wiki/Bangladesh' target='_blank' rel='noopener'>Bangladesh</a>"><a href="https://bn.wikipedia.org/wiki/%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE%E0%A6%A6%E0%A7%87%E0%A6%B6" target="_blank" rel="noopener" data-summary-bn="বাংলাদেশ দক্ষিণ এশিয়ার একটি স্বাধীন ও সার্বভৌম রাষ্ট্র।" data-summary-en="Bangladesh is a country in South Asia.">বাংলাদেশের</a>
-              উত্তর-পশ্চিমাঞ্চলের <a href="https://bn.wikipedia.org/wiki/%E0%A6%B0%E0%A6%82%E0%A6%AA%E0%A7%81%E0%A6%B0_%E0%A6%AC%E0%A6%BF%E0%A6%AD%E0%A6%BE%E0%A6%97" target="_blank" rel="noopener">রংপুর বিভাগের</a> <a href="https://bn.wikipedia.org/wiki/%E0%A6%B0%E0%A6%82%E0%A6%AA%E0%A7%81%E0%A6%B0_%E0%A6%9C%E0%A7%87%E0%A6%B2%E0%A6%BE" target="_blank" rel="noopener">রংপুর জেলার</a> অন্তর্গত <a href="https://bn.wikipedia.org/wiki/%E0%A6%AC%E0%A6%A6%E0%A6%B0%E0%A6%97%E0%A6%9E%E0%A7%8D%E0%A6%9C_%E0%A6%89%E0%A6%AA%E0%A6%9C%E0%A7%87%E0%A6%B2%E0%A6%BE" target="_blank" rel="noopener">বদরগঞ্জ উপজেলার</a> বালুয়াভাটা মৌজায় অবস্থিত একটি
+              data-en="is a prominent four-way road intersection situated within Baluavata mouza, located in <a href='https://en.wikipedia.org/wiki/Badarganj_Upazila' target='_blank' rel='noopener'>Badarganj Upazila</a> of <a href='https://en.wikipedia.org/wiki/Rangpur_District' target='_blank' rel='noopener'>Rangpur District</a>, within <a href='https://en.wikipedia.org/wiki/Rangpur_Division' target='_blank' rel='noopener'>Rangpur Division</a> of <a href='https://en.wikipedia.org/wiki/Bangladesh' target='_blank' rel='noopener'>Bangladesh</a>"><a
+                href="https://bn.wikipedia.org/wiki/%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE%E0%A6%A6%E0%A7%87%E0%A6%B6"
+                target="_blank" rel="noopener">বাংলাদেশের</a>
+              উত্তর-পশ্চিমাঞ্চলের <a
+                href="https://bn.wikipedia.org/wiki/%E0%A6%B0%E0%A6%82%E0%A6%AA%E0%A7%81%E0%A6%B0_%E0%A6%AC%E0%A6%BF%E0%A6%AD%E0%A6%BE%E0%A6%97"
+                target="_blank" rel="noopener">রংপুর বিভাগের</a> <a
+                href="https://bn.wikipedia.org/wiki/%E0%A6%B0%E0%A6%82%E0%A6%AA%E0%A7%81%E0%A6%B0_%E0%A6%9C%E0%A7%87%E0%A6%B2%E0%A6%BE"
+                target="_blank" rel="noopener">রংপুর জেলার</a> অন্তর্গত <a
+                href="https://bn.wikipedia.org/wiki/%E0%A6%AC%E0%A6%A6%E0%A6%B0%E0%A6%97%E0%A6%9E%E0%A7%8D%E0%A6%9C_%E0%A6%89%E0%A6%AA%E0%A6%9C%E0%A7%87%E0%A6%B2%E0%A6%BE"
+                target="_blank" rel="noopener">বদরগঞ্জ উপজেলার</a> বালুয়াভাটা মৌজায় অবস্থিত একটি
               সুপরিচিত ও সক্রিয় চার রাস্তার সড়ক সংযোগস্থল</span><sup class="reference" id="cite_ref-1"><a
                 href="#cite_note-1">[১]</a></sup><sup class="reference" id="cite_ref-2"><a
                 href="#cite_note-2">[২]</a></sup><sup class="reference" id="cite_ref-9"><a
@@ -451,7 +523,10 @@
             <span
               data-bn="পরবর্তীতে বদরগঞ্জ পৌরসভার সরকারি হোল্ডিং কর রসিদ, <a href='https://bn.wikipedia.org/wiki/%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE%E0%A6%A6%E0%A7%87%E0%A6%B6_%E0%A6%AA%E0%A6%B2%E0%A7%8D%E0%A6%B2%E0%A7%80_%E0%A6%AC%E0%A6%BF%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A7%81%E0%A6%A4%E0%A6%BE%E0%A7%9F%E0%A6%A8_%E0%A6%AC%E0%A7%8B%E0%A6%B0%E0%A7%8D%E0%A6%A1' target='_blank' rel='noopener'>রংপুর পল্লী বিদ্যুৎ সমিতি</a>-২ এর গ্রাহক ইউটিলিটি বিল এবং স্থানীয় ব্যবসা প্রতিষ্ঠানের ঠিকানায় এই নামের ধারাবাহিক ও প্রাতিষ্ঠানিক প্রয়োগ প্রমাণিত হয়েছে।"
               data-en="In subsequent years, the designation achieved institutional continuity across Badarganj Municipality tax receipts, <a href='https://en.wikipedia.org/wiki/Bangladesh_Rural_Electrification_Board' target='_blank' rel='noopener'>Palli Bidyut</a> utility bills, and commercial storefronts.">পরবর্তীতে
-              বদরগঞ্জ পৌরসভার সরকারি হোল্ডিং কর রসিদ, <a href="https://bn.wikipedia.org/wiki/%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE%E0%A6%A6%E0%A7%87%E0%A6%B6_%E0%A6%AA%E0%A6%B2%E0%A7%8D%E0%A6%B2%E0%A7%80_%E0%A6%AC%E0%A6%BF%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A7%81%E0%A6%A4%E0%A6%BE%E0%A7%9F%E0%A6%A8_%E0%A6%AC%E0%A7%8B%E0%A6%B0%E0%A7%8D%E0%A6%A1" target="_blank" rel="noopener" data-summary-bn="বাংলাদেশ পল্লী বিদ্যুতায়ন বোর্ড বা আরইবি বাংলাদেশের গ্রামীণ অঞ্চলে বিদ্যুতায়নের কাজে নিয়োজিত সরকারি সংস্থা।" data-summary-en="Bangladesh Rural Electrification Board is government organization responsible for rural electrification.">রংপুর পল্লী বিদ্যুৎ সমিতি</a>-২ এর গ্রাহক ইউটিলিটি বিল এবং স্থানীয় ব্যবসা প্রতিষ্ঠানের ঠিকানায় এই নামের ধারাবাহিক ও
+              বদরগঞ্জ পৌরসভার সরকারি হোল্ডিং কর রসিদ, <a
+                href="https://bn.wikipedia.org/wiki/%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE%E0%A6%A6%E0%A7%87%E0%A6%B6_%E0%A6%AA%E0%A6%B2%E0%A7%8D%E0%A6%B2%E0%A7%80_%E0%A6%AC%E0%A6%BF%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A7%81%E0%A6%A4%E0%A6%BE%E0%A7%9F%E0%A6%A8_%E0%A6%AC%E0%A7%8B%E0%A6%B0%E0%A7%8D%E0%A6%A1"
+                target="_blank" rel="noopener">রংপুর পল্লী বিদ্যুৎ সমিতি</a>-২ এর গ্রাহক ইউটিলিটি বিল এবং স্থানীয়
+              ব্যবসা প্রতিষ্ঠানের ঠিকানায় এই নামের ধারাবাহিক ও
               প্রাতিষ্ঠানিক প্রয়োগ প্রমাণিত হয়েছে।</span><sup class="reference" id="cite_ref-1b"><a
                 href="#cite_note-1">[১]</a></sup><sup class="reference" id="cite_ref-2b"><a
                 href="#cite_note-2">[২]</a></sup><sup class="reference" id="cite_ref-3"><a
@@ -522,9 +597,10 @@
             data-bn="মূল দিকনির্দেশক ফলকটি অপসারিত হলেও মোড়ের নামটি স্থানীয় ব্যবসা প্রতিষ্ঠান ও করপোরেট সাইনবোর্ডের মাধ্যমে স্থায়ীভাবে সুরক্ষিত থাকে। উদাহরণস্বরূপ, সাদিয়া ভ্যারাইটি স্টোর, মাহিম ফ্যাশন এবং মিতু টেইলার্স ও হুমায়ুন ওয়্যার নেটের সাইনবোর্ডে এই নামটি তাদের সার্বক্ষণিক ব্যবসায়িক ঠিকানা হিসেবে সংরক্ষিত রয়েছে।"
             data-en="Although the original post was removed, the designation was permanently preserved through commercial storefronts. For instance, the signboards of Sadia Variety Store, Mahim Fashion, and Mitu Tailors / Humayun Wire Net consistently utilize this name as their permanent trade address.">মূল
             দিকনির্দেশক ফলকটি অপসারিত হলেও মোড়ের নামটি স্থানীয় ব্যবসা প্রতিষ্ঠান ও করপোরেট সাইনবোর্ডের মাধ্যমে
-            স্থায়ীভাবে সুরক্ষিত থাকে। উদাহরণস্বরূপ, সাদিয়া ভ্যারাইটি স্টোর, মাহিম ফ্যাশন এবং মিতু টেইলার্স ও হুমায়ুন ওয়্যার নেটের সাইনবোর্ডে এই নামটি তাদের সার্বক্ষণিক ব্যবসায়িক ঠিকানা হিসেবে সংরক্ষিত রয়েছে।</span><sup class="reference" id="cite_ref-5"><a
-              href="#cite_note-5">[৫]</a></sup><sup class="reference" id="cite_ref-6"><a
-              href="#cite_note-6">[৬]</a></sup><sup class="reference" id="cite_ref-5"><a
+            স্থায়ীভাবে সুরক্ষিত থাকে। উদাহরণস্বরূপ, সাদিয়া ভ্যারাইটি স্টোর, মাহিম ফ্যাশন এবং মিতু টেইলার্স ও হুমায়ুন
+            ওয়্যার নেটের সাইনবোর্ডে এই নামটি তাদের সার্বক্ষণিক ব্যবসায়িক ঠিকানা হিসেবে সংরক্ষিত রয়েছে।</span><sup
+            class="reference" id="cite_ref-5"><a href="#cite_note-5">[৫]</a></sup><sup class="reference"
+            id="cite_ref-6"><a href="#cite_note-6">[৬]</a></sup><sup class="reference" id="cite_ref-5"><a
               href="#cite_note-5">[৫]</a></sup><sup class="reference" id="cite_ref-6"><a
               href="#cite_note-6">[৬]</a></sup>
         </p>
@@ -563,11 +639,15 @@
           <li><b data-bn="পূর্ব অক্ষ:" data-en="Eastern Corridor:">পূর্ব অক্ষ:</b> <span
               data-bn="রংপুর আঞ্চলিক সংযোগ বাইপাস সড়ক ও <a href='https://bn.wikipedia.org/wiki/%E0%A6%B6%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%AE%E0%A6%AA%E0%A7%81%E0%A6%B0_%E0%A6%9A%E0%A6%BF%E0%A6%A8%E0%A6%BF%E0%A6%95%E0%A6%B2_%E0%A6%B2%E0%A6%BF%E0%A6%AE%E0%A6%BF%E0%A6%9F%E0%A7%87%E0%A6%A1' target='_blank' rel='noopener'>শ্যামপুর চিনিকল</a> এলাকার দিকে সম্প্রসারিত।"
               data-en="Connects with the Rangpur regional feeder bypass and <a href='https://en.wikipedia.org/wiki/Shyampur_Sugar_Mills' target='_blank' rel='noopener'>Shyampur sugar mill</a> arterial path.">রংপুর
-              আঞ্চলিক সংযোগ বাইপাস সড়ক ও <a href="https://bn.wikipedia.org/wiki/%E0%A6%B6%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%AE%E0%A6%AA%E0%A7%81%E0%A6%B0_%E0%A6%9A%E0%A6%BF%E0%A6%A8%E0%A6%BF%E0%A6%95%E0%A6%B2_%E0%A6%B2%E0%A6%BF%E0%A6%AE%E0%A6%BF%E0%A6%9F%E0%A7%87%E0%A6%A1" target="_blank" rel="noopener" data-summary-bn="শ্যামপুর চিনিকল লিমিটেড বাংলাদেশের রংপুর জেলায় অবস্থিত একটি ভারী শিল্প প্রতিষ্ঠান।" data-summary-en="Shyampur Sugar Mills is a heavy industrial state-owned enterprise located in Rangpur District.">শ্যামপুর চিনিকল</a> এলাকার দিকে সম্প্রসারিত।</span></li>
+              আঞ্চলিক সংযোগ বাইপাস সড়ক ও <a
+                href="https://bn.wikipedia.org/wiki/%E0%A6%B6%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%AE%E0%A6%AA%E0%A7%81%E0%A6%B0_%E0%A6%9A%E0%A6%BF%E0%A6%A8%E0%A6%BF%E0%A6%95%E0%A6%B2_%E0%A6%B2%E0%A6%BF%E0%A6%AE%E0%A6%BF%E0%A6%9F%E0%A7%87%E0%A6%A1"
+                target="_blank" rel="noopener">শ্যামপুর চিনিকল</a> এলাকার দিকে সম্প্রসারিত।</span></li>
           <li><b data-bn="পশ্চিম অক্ষ:" data-en="Western Corridor:">পশ্চিম অক্ষ:</b> <span
               data-bn="<a href='https://bn.wikipedia.org/wiki/%E0%A6%A4%E0%A6%BE%E0%A6%B0%E0%A6%BE%E0%A6%97%E0%A6%9E%E0%A7%8D%E0%A6%9C_%E0%A6%89%E0%A6%AA%E0%A6%9C%E0%A7%87%E0%A6%B2%E0%A6%BE' target='_blank' rel='noopener'>তারাগঞ্জ উপজেলা</a> ও বদরগঞ্জের পশ্চিমাঞ্চলীয় মৌজাসমূহের সঙ্গে সংযোগ স্থাপন করেছে।"
-              data-en="Rural connector road facilitating transit toward <a href='https://en.wikipedia.org/wiki/Taraganj_Upazila' target='_blank' rel='noopener'>Taraganj Upazila</a> and western mouzas."><a href="https://bn.wikipedia.org/wiki/%E0%A6%A4%E0%A6%BE%E0%A6%B0%E0%A6%BE%E0%A6%97%E0%A6%9E%E0%A7%8D%E0%A6%9C_%E0%A6%89%E0%A6%AA%E0%A6%9C%E0%A7%87%E0%A6%B2%E0%A6%BE" target="_blank" rel="noopener" data-summary-bn="তারাগঞ্জ বাংলাদেশের রংপুর জেলার অন্তর্গত একটি উপজেলা।" data-summary-en="Taraganj is an upazila of Rangpur District in Bangladesh.">তারাগঞ্জ
-              উপজেলা</a> ও বদরগঞ্জের পশ্চিমাঞ্চলীয় মৌজাসমূহের সঙ্গে সংযোগ স্থাপন করেছে।</span></li>
+              data-en="Rural connector road facilitating transit toward <a href='https://en.wikipedia.org/wiki/Taraganj_Upazila' target='_blank' rel='noopener'>Taraganj Upazila</a> and western mouzas."><a
+                href="https://bn.wikipedia.org/wiki/%E0%A6%A4%E0%A6%BE%E0%A6%B0%E0%A6%BE%E0%A6%97%E0%A6%9E%E0%A7%8D%E0%A6%9C_%E0%A6%89%E0%A6%AA%E0%A6%9C%E0%A7%87%E0%A6%B2%E0%A6%BE"
+                target="_blank" rel="noopener">তারাগঞ্জ
+                উপজেলা</a> ও বদরগঞ্জের পশ্চিমাঞ্চলীয় মৌজাসমূহের সঙ্গে সংযোগ স্থাপন করেছে।</span></li>
         </ul>
 
         <!-- ==========================================================================
@@ -732,13 +812,31 @@
           </div>
         </div>
 
+        <!-- Floating Thumb 5: Sadiya Variety Store -->
+        <div class="thumb tleft">
+          <div class="thumbinner" style="width: 270px;">
+            <img src="images/sadiya-variety-store-1.jpeg" alt="সাদিয়া ভ্যারাইটি স্টোর" class="thumbimage"
+              data-viewer-img="images/sadiya-variety-store-1.jpeg" data-title-bn="সাদিয়া ভ্যারাইটি স্টোর (২০২৬)"
+              data-title-en="Sadiya Variety Store (2026)" data-date="২৫ মার্চ ২০২৬" data-auth-bn="স্থানীয় তথ্যচিত্র"
+              data-auth-en="Local Archive" data-notes-bn="এলাকার সবচেয়ে বড় জেনারেল গ্রোসারি স্টোর"
+              data-notes-en="The biggest general grocery store in the area" />
+            <div class="thumbcaption">
+              <div class="magnify"><span class="magnify-icon" title="বড় করে দেখুন">🔍</span></div>
+              <span data-bn="অত্র এলাকার সবচেয়ে বড় দোকান সাদিয়া ভ্যারাইটি স্টোর (২০২৬)"
+                data-en="Sadiya Variety Store, the largest store in the area (2026)">
+                অত্র এলাকার সবচেয়ে বড় মুদি দোকান সাদিয়া ভ্যারাইটি স্টোর (২০২৬)
+              </span>
+            </div>
+          </div>
+        </div>
+
         <ul>
-          <li><b data-bn="টেলিকম ও ডিপার্টমেন্টাল সেবা:" data-en="Telecommunications & Retail:">টেলিকম ও ডিপার্টমেন্টাল
-              সেবা:</b> <span
-              data-bn="সাদিয়া ভ্যারাইটি স্টোর, যা একটি ফ্লেক্সিলোড ও ভ্যারাইটি কেন্দ্র হিসেবে পরিচালিত হয়।"
-              data-en="Sadia Variety Store, serving as a retail and utility recharge outlet.">সাদিয়া
-              ভ্যারাইটি স্টোর, যা একটি ফ্লেক্সিলোড ও ভ্যারাইটি কেন্দ্র হিসেবে পরিচালিত
-              হয়।</span></li>
+          <li><b data-bn="জেনারেল গ্রোসারি ও ভ্যারাইটি স্টোর:" data-en="General Grocery & Variety Store:">জেনারেল
+              গ্রোসারি ও ভ্যারাইটি স্টোর:</b> <span
+              data-bn="সাদিয়া ভ্যারাইটি স্টোর, অত্র এলাকার সবচেয়ে বড় জেনারেল গ্রোসারি স্টোর এবং ১ নম্বর দোকান হিসেবে ব্যাপকভাবে পরিচিত।"
+              data-en="Sadiya Variety Store, widely recognized as the biggest general grocery store and the number 1 store in this area.">সাদিয়া
+              ভ্যারাইটি স্টোর, অত্র এলাকার সবচেয়ে বড় জেনারেল গ্রোসারি স্টোর এবং ১ নম্বর দোকান হিসেবে ব্যাপকভাবে
+              পরিচিত।</span></li>
           <li><b data-bn="বস্ত্র ও পোশাক শিল্প:" data-en="Apparel & Tailoring:">বস্ত্র ও পোশাক শিল্প:</b> <span
               data-bn="মাহিম ফ্যাশন (স্বত্বাধিকারী: মোঃ মুকুল হোসেন) এবং মিতু টেইলার্স, যা স্থানীয় জনসাধারণের পোশাকের চাহিদা পূরণ করে।"
               data-en="Mahim Fashion (Proprietor: Md. Mukul Hossain) and Mitu Tailors, fulfilling local garment and tailoring needs.">মাহিম
@@ -750,7 +848,8 @@
               data-bn="মোঃ হুমায়ুন ওয়্যার নেট কর্মশালা, যা বিভিন্ন প্রকার ধাতব তারের জাল ও কৃষি বেড়ার সরঞ্জাম প্রস্তুত করে।"
               data-en="Md. Humayun Wire Net workshop, producing metal mesh and agricultural fencing equipment.">মোঃ
               হুমায়ুন ওয়্যার নেট কর্মশালা, যা বিভিন্ন প্রকার ধাতব তারের জাল ও কৃষি বেড়ার সরঞ্জাম প্রস্তুত
-              করে।</span><sup class="reference" id="cite_ref-6c"><a href="#cite_note-6">[৬]</a></sup></li>
+              করে।</span><sup class="reference" id="cite_ref-6c"><a href="#cite_note-6">[৬]</a></sup>
+          </li>
           <li><b data-bn="চায়ের স্টল ও সামাজিক আড্ডা:" data-en="Social Teahouses & Community Hub:">চায়ের স্টল ও
               সামাজিক আড্ডা:</b> <span
               data-bn="মোড়ের কোণে স্থাপিত ঐতিহ্যবাহী চায়ের দোকান ও টিনের ছাউনির বেঞ্চ, যা স্থানীয় বাসিন্দা, কৃষক ও পথচারীদের দৈনন্দিন তথ্য আদান-প্রদানের প্রধান কেন্দ্র।"
@@ -858,6 +957,37 @@
         </p>
 
         <div class="wiki-gallery-grid">
+          <!-- Sadiya Variety Store Gallery 1 -->
+          <div class="gallery-card">
+            <div class="gallery-img-wrap" data-viewer-img="images/sadiya-variety-store-2.jpeg"
+              data-title-bn="সাদিয়া ভ্যারাইটি স্টোর (২০২৬)" data-title-en="Sadiya Variety Store (2026)"
+              data-date="২৫ মার্চ ২০২৬" data-auth-bn="স্থানীয় ব্যবসায়ী" data-auth-en="Local Merchant"
+              data-notes-bn="দোকানের সম্মুখভাগ।" data-notes-en="Storefront view.">
+              <img src="images/sadiya-variety-store-2.jpeg" alt="সাদিয়া ভ্যারাইটি স্টোর ২" loading="lazy">
+              <span class="gallery-overlay-btn">🔍 জুম ভিউ</span>
+            </div>
+            <div class="gallery-caption">
+              <b data-bn="সাদিয়া ভ্যারাইটি স্টোর" data-en="Sadiya Variety Store">সাদিয়া ভ্যারাইটি স্টোর</b><br>
+              <span data-bn="এলাকার ১ নম্বর মুদি দোকান" data-en="No. 1 grocery store in the area">এলাকার ১ নম্বর মুদি
+                দোকান</span>
+            </div>
+          </div>
+
+          <!-- Sadiya Variety Store Gallery 2 -->
+          <div class="gallery-card">
+            <div class="gallery-img-wrap" data-viewer-img="images/sadiya-variety-store-3.jpeg"
+              data-title-bn="সাদিয়া ভ্যারাইটি স্টোর - পণ্যের সমাহার" data-title-en="Sadiya Variety Store - Inventory"
+              data-date="২৫ মার্চ ২০২৬" data-auth-bn="স্থানীয় ব্যবসায়ী" data-auth-en="Local Merchant"
+              data-notes-bn="ভিতরের দৃশ্য।" data-notes-en="Inside view.">
+              <img src="images/sadiya-variety-store-3.jpeg" alt="সাদিয়া ভ্যারাইটি স্টোর ৩" loading="lazy">
+              <span class="gallery-overlay-btn">🔍 জুম ভিউ</span>
+            </div>
+            <div class="gallery-caption">
+              <b data-bn="পণ্যের সমাহার" data-en="Inventory Collection">পণ্যের সমাহার</b><br>
+              <span data-bn="দোকানের ভিতরের দৃশ্য" data-en="Inside view of the store">দোকানের ভিতরের দৃশ্য</span>
+            </div>
+          </div>
+
           <!-- 2014 Photo 1 -->
           <div class="gallery-card">
             <div class="gallery-img-wrap" data-viewer-img="images/2014_1.jpg"

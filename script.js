@@ -326,55 +326,157 @@
     });
   }
 
+  // --- Wikipedia Hover Cards (Page Previews) ---
+  const hoverCard = document.createElement('div');
+  hoverCard.className = 'wiki-hover-card';
+  document.body.appendChild(hoverCard);
+
+  let hoverTimeout;
+  let currentTarget = null;
+
+  document.querySelectorAll('a[href*="wikipedia.org/wiki/"]').forEach(link => {
+    link.addEventListener('mouseenter', (e) => {
+      clearTimeout(hoverTimeout);
+      const url = new URL(link.href);
+      const lang = url.hostname.split('.')[0]; // bn or en
+      const title = url.pathname.split('/wiki/')[1];
+      
+      currentTarget = link;
+
+      hoverTimeout = setTimeout(async () => {
+        if (currentTarget !== link) return;
+        
+        try {
+          const res = await fetch(`https://${lang}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`);
+          if (!res.ok) return;
+          const data = await res.json();
+          if (currentTarget !== link) return;
+
+          let html = '';
+          if (data.thumbnail) {
+            html += `<img class="wiki-hover-card-img" src="${data.thumbnail.source}" alt="${data.title}">`;
+          }
+          html += `
+            <div class="wiki-hover-card-content">
+              <div class="wiki-hover-card-extract">${data.extract_html}</div>
+              <div class="wiki-hover-card-settings" title="Settings">⚙</div>
+            </div>
+          `;
+          hoverCard.innerHTML = html;
+
+          // Remove any Wikipedia injected styling links
+          hoverCard.querySelectorAll('link, style').forEach(el => el.remove());
+
+          // Position card
+          const rect = link.getBoundingClientRect();
+          const cardWidth = 320;
+          let top = rect.bottom + window.scrollY + 8; // default below
+          let left = rect.left + window.scrollX - (cardWidth / 2) + (rect.width / 2);
+          
+          if (left < 10) left = 10;
+          if (left + cardWidth > window.innerWidth) left = window.innerWidth - cardWidth - 10;
+          
+          // Show above if not enough space below
+          if (rect.bottom + 250 > window.innerHeight && rect.top > 250) {
+            top = rect.top + window.scrollY - 8;
+            hoverCard.style.bottom = `${document.documentElement.scrollHeight - top}px`;
+            hoverCard.style.top = 'auto';
+          } else {
+            hoverCard.style.top = `${top}px`;
+            hoverCard.style.bottom = 'auto';
+          }
+
+          hoverCard.style.left = `${left}px`;
+          hoverCard.classList.add('show');
+        } catch (err) {
+          console.error('Hover card fetch failed', err);
+        }
+      }, 500); // Wait 500ms before fetching (similar to actual Wikipedia)
+    });
+
+    link.addEventListener('mouseleave', () => {
+      clearTimeout(hoverTimeout);
+      hoverTimeout = setTimeout(() => {
+        if (!hoverCard.matches(':hover')) {
+          hoverCard.classList.remove('show');
+          currentTarget = null;
+        }
+      }, 300);
+    });
+  });
+
+  hoverCard.addEventListener('mouseleave', () => {
+    hoverTimeout = setTimeout(() => {
+      hoverCard.classList.remove('show');
+      currentTarget = null;
+    }, 300);
+  });
+  hoverCard.addEventListener('mouseenter', () => {
+    clearTimeout(hoverTimeout);
+  });
+
+  // --- Share Button ---
+  const shareTitleBtn = document.getElementById('shareTitleBtn');
+  const sharePopup = document.getElementById('sharePopup');
+  const shareCopyBtn = document.getElementById('shareCopyBtn');
+  const shareUrlInput = document.getElementById('shareUrlInput');
+  const shareFacebook = document.getElementById('shareFacebook');
+  const shareTwitter = document.getElementById('shareTwitter');
+  const shareWhatsapp = document.getElementById('shareWhatsapp');
+
+  if (shareTitleBtn && sharePopup) {
+    const pageUrl = window.location.href;
+    const pageTitle = document.title;
+
+    // Set URL in input
+    if (shareUrlInput) shareUrlInput.value = pageUrl;
+
+    // Set social share hrefs
+    if (shareFacebook) shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
+    if (shareTwitter) shareTwitter.href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(pageTitle)}`;
+    if (shareWhatsapp) shareWhatsapp.href = `https://wa.me/?text=${encodeURIComponent(pageTitle + ' ' + pageUrl)}`;
+
+    // Toggle popup on button click
+    shareTitleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      sharePopup.classList.toggle('open');
+    });
+
+    // Close popup when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!shareTitleBtn.contains(e.target)) {
+        sharePopup.classList.remove('open');
+      }
+    });
+
+    // Copy URL
+    if (shareCopyBtn && shareUrlInput) {
+      shareCopyBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        shareUrlInput.select();
+        navigator.clipboard.writeText(shareUrlInput.value).then(() => {
+          shareCopyBtn.textContent = currentLang === 'bn' ? 'কপি হয়েছে!' : 'Copied!';
+          shareCopyBtn.classList.add('copied');
+          setTimeout(() => {
+            shareCopyBtn.textContent = currentLang === 'bn' ? 'কপি' : 'Copy';
+            shareCopyBtn.classList.remove('copied');
+          }, 2000);
+        });
+      });
+    }
+  }
+
+  // --- Infobox Auto Slideshow ---
+  const slides = document.querySelectorAll('.infobox-slide');
+  if (slides.length > 0) {
+    let currentSlideIndex = 0;
+    setInterval(() => {
+      slides[currentSlideIndex].classList.remove('active');
+      currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+      slides[currentSlideIndex].classList.add('active');
+    }, 4000); // Change image every 4 seconds
+  }
+
   // --- Initialize Language ---
   applyLanguage(currentLang);
-
-  // --- Page Previews (Hover Tooltips) ---
-  function initPagePreviews() {
-    const popup = document.createElement('div');
-    popup.className = 'wiki-preview-popup';
-    document.body.appendChild(popup);
-
-    const links = document.querySelectorAll('a[data-summary-bn]');
-    let timeoutId;
-
-    links.forEach(link => {
-      link.addEventListener('mouseenter', () => {
-        clearTimeout(timeoutId);
-        const isEn = document.body.classList.contains('lang-en');
-        const summary = isEn ? link.getAttribute('data-summary-en') : link.getAttribute('data-summary-bn');
-        if (!summary) return;
-
-        popup.innerHTML = summary + '<div class="wiki-preview-footer">⚙</div>';
-        
-        const rect = link.getBoundingClientRect();
-        let top = rect.bottom + window.scrollY + 5;
-        let left = Math.max(10, rect.left + window.scrollX);
-
-        popup.style.display = 'block';
-        
-        if (left + 320 > window.innerWidth) {
-          left = window.innerWidth - 340;
-        }
-        
-        popup.style.top = `${top}px`;
-        popup.style.left = `${left}px`;
-        
-        setTimeout(() => popup.classList.add('show'), 10);
-      });
-
-      link.addEventListener('mouseleave', () => {
-        timeoutId = setTimeout(() => {
-          popup.classList.remove('show');
-          setTimeout(() => {
-            if (!popup.classList.contains('show')) popup.style.display = 'none';
-          }, 200);
-        }, 150);
-      });
-    });
-  }
-  
-  // Call it after a short delay to ensure DOM is ready and links are present
-  setTimeout(initPagePreviews, 100);
-
 })();
