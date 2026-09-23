@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://customsmor.vercel.app/sitemap.xml
+Sitemap: https://customsmor.vercel.app/sitemap-bn.xml
+Sitemap: https://customsmor.vercel.app/sitemap-en.xml
