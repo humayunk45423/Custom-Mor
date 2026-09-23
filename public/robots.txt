@@ -1,7 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://custommor.vercel.app/sitemap.xml
-Sitemap: https://custommor.vercel.app/sitemap-bn.xml
-Sitemap: https://custommor.vercel.app/sitemap-en.xml
-
